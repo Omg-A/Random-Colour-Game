@@ -32,8 +32,8 @@ class Game:
         label_name["text"] = self.text[self.random_text]
         label_name["fg"] = self.color[self.random_color]
     
-    def __updateScore(self, input_value):
-        if(input_value == self.color[self.random_color]):
+    def __updateScore(self, input_color):
+        if(input_color == self.color[self.random_color]):
             self.__score = self.__score + random.randint(0, 10)
             label_score["text"] = "Score: " + str(self.__score)
     
@@ -46,14 +46,12 @@ def getInput():
     value = input_color.get()
     obj.getUserValue(value)
     obj.updateGame()
-    input_color.delete()
+    input_color.delete(0, END)
 
-game_object = Game()
+start = Button(root, text="Start", bg="green1", fg="green4", padx=10, pady=1, font=("Arial", 13, "bold"), command=obj.updateGame)
+start.place(relx=0.6, rely=0.7, anchor=CENTER)
 
-button = Button(root, text="Start", bg="green1", fg="green4", padx=10, pady=1, font=("Arial", 13, "bold"), command=obj.updateGame)
-button.place(relx=0.6, rely=0.7, anchor=CENTER)
-
-button = Button(root, text="Check", bg="red1", fg="red4", padx=10, pady=1, font=("Arial", 13, "bold"), command=getInput())
-button.place(relx=0.4, rely=0.7, anchor=CENTER)
+check = Button(root, text="Check", bg="red1", fg="red4", padx=10, pady=1, font=("Arial", 13, "bold"), command=getInput)
+check.place(relx=0.4, rely=0.7, anchor=CENTER)
 
 root.mainloop()
